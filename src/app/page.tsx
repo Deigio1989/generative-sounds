@@ -1,16 +1,17 @@
 "use client";
-import { generativeLoop } from "./components/GenenrativeSound";
+import { playNote } from "./components/ScaleGenerator";
 
 export default function Home() {
-  const { start, stop } = generativeLoop();
-  const { start: start2, stop: stop2 } = generativeLoop();
+  const frequency = 65.41; // Frequency of C2
+  const majorScale = [0, 2, 4, 5, 7, 9, 11, 12];
 
   return (
     <div>
-      <button onClick={start}>MusiD</button>
-      <button onClick={stop}>Stop</button>
-      <button onClick={start2}>MusiD</button>
-      <button onClick={stop2}>Stop</button>
+      {majorScale.map((step) => (
+        <button key={step} onClick={() => playNote(frequency, step)}>
+          Play {step}
+        </button>
+      ))}
     </div>
   );
 }
